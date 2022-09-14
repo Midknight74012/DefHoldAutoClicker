@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -106,6 +106,11 @@ namespace WpfApp1
             p.Y = 224;
             c.leftClick(p);
 
+            bool triplexer = false; ///This value will be used to assign
+            ///the last click point on one of the two windows I use
+            ///to put the failed units into an LPID. I use this to scrap units
+            ///at the end of the shift.
+
             ///After the Defective Hold Screen is selected from the process above
             ///this will enter the serial number in the textbox after a short delay
             Thread.Sleep(300);
@@ -135,12 +140,14 @@ namespace WpfApp1
             //This will select Estimated Video
             if ((bool)estVidCheck.IsChecked)
             {
+                triplexer = true;
                 DownArrow(2);
             }
 
             //This will select Optical Power
             if ((bool)opticalPowerCheck.IsChecked)
             {
+                triplexer = true;
                 DownArrow(12);
             }
             
@@ -155,12 +162,14 @@ namespace WpfApp1
             //This will select Ranging
             if ((bool)rangingCheck.IsChecked)
             {
+                triplexer = true;
                 DownArrow(20);
             }
 
             //This will select RF Power
             if ((bool)rfPowerCheck.IsChecked)
             {
+                triplexer = true;
                 DownArrow(18);
             }
 
@@ -203,6 +212,36 @@ namespace WpfApp1
             isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.F6);
             Thread.Sleep(100);
 
+            ///This step will assign which of the two click points
+            ///which will add the unit to an LPID depending on if bool triplexer
+            ///is set to false or true.
+
+            System.Drawing.Point t = new System.Drawing.Point();
+            ///These are the coordinates I use to load units with an LPID
+            ///that has the process of OOW-DH-TP
+            t.X = 642;
+            t.Y = 26;
+
+            System.Drawing.Point x = new System.Drawing.Point();
+            ///These are the coordinates I use to load units with an LPID
+            ///that has the process of OOW-DEF-HOLD
+            x.X = 1191;
+            x.Y = 26;
+
+            if (triplexer == true)
+            {
+                
+                c.leftClick(t);
+                
+            } else
+            {
+                c.leftClick(x);
+            }
+            Thread.Sleep(300);
+            SendKeys.SendWait(serialNumberTextbox.Text);
+            Thread.Sleep(100);
+            isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.RETURN);
+            Thread.Sleep(30);
             //This will go back to the mainwindow of the autoclicker with the serial
             //number highlighted. This will allow the user to scan the next
             //unit and run the application instead of having to click
