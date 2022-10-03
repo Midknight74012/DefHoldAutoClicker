@@ -137,6 +137,12 @@ namespace WpfApp1
             ///All of the following steps will have the application select each
             ///fail in the Def-Hold screen if the box is checked for that
             ///specific fail.
+
+            //This will select Power
+            if ((bool)powerCheck.IsChecked)
+            {
+                DownArrow(17);
+            }
             //This will select Estimated Video
             if ((bool)estVidCheck.IsChecked)
             {
@@ -250,6 +256,57 @@ namespace WpfApp1
             serialNumberTextbox.SelectAll();
             
             
+        }
+
+
+        private void scrapRadio_Checked(object sender, RoutedEventArgs e)
+        {
+            TimeSpan now = DateTime.Now.TimeOfDay;
+            TimeSpan scrapTime = new TimeSpan(20, 30, 0);
+            string scrapLPID = "";
+            if (now == scrapTime)
+            {
+                System.Drawing.Point p = new System.Drawing.Point();
+                p.X = 1805;
+                p.Y = 224;
+                c.leftClick(p);
+                Thread.Sleep(300);
+                InputSimulator isim = new InputSimulator();
+                isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.F4);
+                if ((bool)verizonButton.IsChecked)
+                    scrapLPID = "VZT123456";
+                {
+                    for (int i = 0; i < 59; i++)
+                    {
+                        isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.DOWN);
+                        Thread.Sleep(30);
+                        
+                    }
+                } if ((bool)frontierButton.IsChecked)
+                    scrapLPID = "FNT123456";
+                {
+                    for (int i = 0; i < 21; i++)
+                    {
+                        isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.DOWN);
+                        Thread.Sleep(30);
+                    }
+                }
+                isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.RETURN);
+                Thread.Sleep(300);
+                SendKeys.SendWait(lpidNumber.Text);
+                Thread.Sleep(30);
+                isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.RETURN);
+                Thread.Sleep(30);
+                SendKeys.SendWait("Y");
+                Thread.Sleep(30);
+                SendKeys.SendWait(scrapLPID);
+                Thread.Sleep(30);
+                SendKeys.SendWait("Y");
+            }
+            noScrap.IsChecked = true;
+            scrapRadio.IsChecked = false;
+            
+
         }
     }
 
