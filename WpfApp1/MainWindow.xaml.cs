@@ -259,57 +259,27 @@ namespace WpfApp1
         }
 
 
+       private void verizonButton_Checked(object sender, RoutedEventArgs e)
+        {
+            ScrapTimer.customerNum = 59;
+            ScrapTimer.customerStr = "vzt";
+        }
+
+        private void frontierButton_Checked(object sender, RoutedEventArgs e)
+        {
+            ScrapTimer.customerNum = 21;
+            ScrapTimer.customerStr = "fnt";
+        }
+
         private void scrapRadio_Checked(object sender, RoutedEventArgs e)
         {
-            TimeSpan now = DateTime.Now.TimeOfDay;
-            TimeSpan scrapTime = new TimeSpan(20, 30, 0);
-            string scrapLPID = "";
-            if (now == scrapTime)
-            {
-                System.Drawing.Point p = new System.Drawing.Point();
-                p.X = 1805;
-                p.Y = 224;
-                c.leftClick(p);
-                Thread.Sleep(300);
-                InputSimulator isim = new InputSimulator();
-                isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.F4);
-                if ((bool)verizonButton.IsChecked)
-                    scrapLPID = "VZT123456";
-                {
-                    for (int i = 0; i < 59; i++)
-                    {
-                        isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.DOWN);
-                        Thread.Sleep(30);
-                        
-                    }
-                } if ((bool)frontierButton.IsChecked)
-                    scrapLPID = "FNT123456";
-                {
-                    for (int i = 0; i < 21; i++)
-                    {
-                        isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.DOWN);
-                        Thread.Sleep(30);
-                    }
-                }
-                isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.RETURN);
-                Thread.Sleep(300);
-                SendKeys.SendWait(lpidNumber.Text);
-                Thread.Sleep(30);
-                isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.RETURN);
-                Thread.Sleep(30);
-                SendKeys.SendWait("Y");
-                Thread.Sleep(30);
-                SendKeys.SendWait(scrapLPID);
-                Thread.Sleep(30);
-                SendKeys.SendWait("Y");
-            }
-            noScrap.IsChecked = true;
-            scrapRadio.IsChecked = false;
-            
+            ScrapTimer.TimerSetup();
+        }
 
+        private void noScrap_Checked(object sender, RoutedEventArgs e)
+        {
+            ScrapTimer.timer.Stop();
         }
     }
-
-        
-    }
+}
 
