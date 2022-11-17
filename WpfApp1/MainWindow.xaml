@@ -28,12 +28,11 @@
         <TextBlock HorizontalAlignment="Left" Margin="43,57,0,0" TextWrapping="Wrap" Text="Serial Number" VerticalAlignment="Top" Height="16" IsEnabled="False" Width="76" Grid.Column="2"/>
         <TextBox x:Name="serialNumberTextbox" HorizontalAlignment="Left" Margin="12,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="24" Grid.Column="3" Grid.ColumnSpan="2" KeyDown="serialNumberTextbox_KeyDown"/>
         <CheckBox x:Name="powerCheck" Content="Power" HorizontalAlignment="Left" Margin="10,-20,0,0" VerticalAlignment="Top" Width="73" Grid.ColumnSpan="2" IsChecked="False"/>
-        <TextBox x:Name="lpidNumber" Grid.Column="3" HorizontalAlignment="Left" Margin="0,189,0,0" TextWrapping="Wrap" Text="Triplexer LPID" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-        <RadioButton x:Name="verizonButton" IsChecked="True" Content="Verizon" HorizontalAlignment="Left" Margin="11,177,0,0" VerticalAlignment="Top" Width="119" Grid.ColumnSpan="3" GroupName="Customer"/>
-        <RadioButton x:Name="frontierButton" Content="Frontier" HorizontalAlignment="Left" Margin="11,198,0,0" VerticalAlignment="Top" Width="72" Grid.ColumnSpan="2" GroupName="Customer"/>
+        <RadioButton x:Name="verizonButton" IsChecked="True" Content="Verizon" HorizontalAlignment="Left" Margin="11,177,0,0" VerticalAlignment="Top" Width="119" Grid.ColumnSpan="3" GroupName="Customer" Checked="verizonButton_Checked"/>
+        <RadioButton x:Name="frontierButton" Content="Frontier" HorizontalAlignment="Left" Margin="11,198,0,0" VerticalAlignment="Top" Width="72" Grid.ColumnSpan="2" GroupName="Customer" Checked="frontierButton_Checked"/>
         <GroupBox x:Name="customerBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="59" Header="Customer" Margin="0,160,0,0" VerticalAlignment="Top" Width="83"/>
         <RadioButton x:Name="scrapRadio" Grid.Column="2" Content="Yes" HorizontalAlignment="Left" Margin="26,177,0,0" VerticalAlignment="Top" GroupName="Scrap" Checked="scrapRadio_Checked"/>
-        <RadioButton x:Name="noScrap" Grid.Column="2" Content="No" HorizontalAlignment="Left" Margin="26,198,0,0" VerticalAlignment="Top" GroupName="Scrap" IsChecked="True"/>
+        <RadioButton x:Name="noScrap" Grid.Column="2" Content="No" HorizontalAlignment="Left" Margin="26,198,0,0" VerticalAlignment="Top" GroupName="Scrap" IsChecked="True" Checked="noScrap_Checked"/>
         <GroupBox x:Name="scrapBox" Grid.Column="2" HorizontalAlignment="Left" Height="59" Header="Scrap Pallets?" Margin="10,160,0,0" VerticalAlignment="Top" Width="85"/>
 
 
