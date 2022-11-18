@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,46 +37,47 @@ namespace WpfApp1
             ///customerStr and today concatenated together. The non-triplexer
             ///pallet will be customerStr and "123456" concatenated together
             isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.F4);
+            Thread.Sleep(2000);
             for (int i = 0; i < customerNum; i++)
             {
                 isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.DOWN);
                 Thread.Sleep(50);
             }
             isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.RETURN);
-            Thread.Sleep(50);
+            Thread.Sleep(2000);
             SendKeys.SendWait(customerStr + today);
-            Thread.Sleep(50);
+            Thread.Sleep(2000);
             isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.RETURN);
-            Thread.Sleep(50);
+            Thread.Sleep(2000);
             SendKeys.SendWait("Y");
-            Thread.Sleep(50);
+            Thread.Sleep(2000);
             isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.RETURN);
-            Thread.Sleep(50);
+            Thread.Sleep(2000);
             SendKeys.SendWait(customerStr + "123456");
-            Thread.Sleep(50);
+            Thread.Sleep(2000);
             isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.RETURN);
-            Thread.Sleep(50);
+            Thread.Sleep(2000);
             SendKeys.SendWait("Y");
-            Thread.Sleep(50);
+            Thread.Sleep(2000);
             isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.RETURN);
-            Thread.Sleep(50);
+            Thread.Sleep(2000);
 
             ///After scraping the two pallets, it will return the screen
             ///back to def-hold
             isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.F4);
-            Thread.Sleep(50);
+            Thread.Sleep(2000);
             isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.DOWN);
             Thread.Sleep(50);
             isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.RETURN);
-            Thread.Sleep(50);
+            Thread.Sleep(2000);
             SendKeys.SendWait("1");
-            Thread.Sleep(50);
+            Thread.Sleep(2000);
             isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.RETURN);
-            Thread.Sleep(50);
+            Thread.Sleep(2000);
             SendKeys.SendWait("none");
-            Thread.Sleep(50);
+            Thread.Sleep(2000);
             isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.RETURN);
-            Thread.Sleep(50);
+            Thread.Sleep(300);
 
             ///This section will clear the triplexer pallet LPID to force
             ///the user to enter a new LPID for the day. They have to remember
@@ -109,7 +110,10 @@ namespace WpfApp1
             {
                 timer.Stop();
                 ScrapProcess();
-                
+                timer = new System.Timers.Timer(60000);       // 1 minute
+                timer.Elapsed += timer1_reset;
+                timer.AutoReset = false;
+                timer.Start();
             }
         }
 
