@@ -34,6 +34,7 @@
         <RadioButton x:Name="scrapRadio" Grid.Column="2" Content="Yes" HorizontalAlignment="Left" Margin="26,177,0,0" VerticalAlignment="Top" GroupName="Scrap" Checked="scrapRadio_Checked"/>
         <RadioButton x:Name="noScrap" Grid.Column="2" Content="No" HorizontalAlignment="Left" Margin="26,198,0,0" VerticalAlignment="Top" GroupName="Scrap" IsChecked="True" Checked="noScrap_Checked"/>
         <GroupBox x:Name="scrapBox" Grid.Column="2" HorizontalAlignment="Left" Height="59" Header="Scrap Pallets?" Margin="10,160,0,0" VerticalAlignment="Top" Width="85"/>
+        <Button x:Name="scrapButton" Grid.Column="2" Content="Scrap Now" HorizontalAlignment="Left" Margin="102,170,0,0" VerticalAlignment="Top" Width="87" Grid.ColumnSpan="3" Click="scrapButton_Click"/>
 
 
     </Grid>
