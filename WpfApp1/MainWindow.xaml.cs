@@ -19,9 +19,12 @@ using System.IO;
 using System.Windows.Forms;
 using WindowsInput;
 using Application = System.Windows.Forms.Application;
+using System.Runtime.CompilerServices;
+using WpfApp1;
 
 namespace WpfApp1
 {
+
     public class Click
     {
         [DllImport("user32.dll")]
@@ -48,16 +51,19 @@ namespace WpfApp1
         }
 
     }
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
         }
-        
+
+
         /// <summary>
         /// This function is made to press the down arrow key 'num' times in order to reach
         /// the fail code in the Def-Hold screen of NetTerm. This function is called
@@ -70,18 +76,18 @@ namespace WpfApp1
         public void DownArrow(int num)
         {
             InputSimulator isim = new InputSimulator();
-            
-                for (int i = 0; i < num; i++)
-                {
-                    isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.DOWN);
-                    Thread.Sleep(30);
-                }
+
+            for (int i = 0; i < num; i++)
+            {
+                isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.DOWN);
+                Thread.Sleep(30);
+            }
             isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.RETURN);
             Thread.Sleep(50);
-                isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.F3);
-                Thread.Sleep(50);
+            isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.F3);
+            Thread.Sleep(50);
         }
-        
+
 
         Click c = new Click();
 
@@ -95,8 +101,10 @@ namespace WpfApp1
             }
         }
 
+
         private void executeButton_Click(object sender, RoutedEventArgs e)
         {
+            bool triplexer = false;
             InputSimulator isim = new InputSimulator();
             System.Drawing.Point p = new System.Drawing.Point();
             ///These XY coordinates is where the Defective Hold Screen is located on
@@ -105,11 +113,6 @@ namespace WpfApp1
             p.X = 1805;
             p.Y = 224;
             c.leftClick(p);
-
-            bool triplexer = false; ///This value will be used to assign
-            ///the last click point on one of the two windows I use
-            ///to put the failed units into an LPID. I use this to scrap units
-            ///at the end of the shift.
 
             ///After the Defective Hold Screen is selected from the process above
             ///this will enter the serial number in the textbox after a short delay
@@ -156,14 +159,14 @@ namespace WpfApp1
                 triplexer = true;
                 DownArrow(12);
             }
-            
+
 
             //This will select Pots
             if ((bool)potCheck.IsChecked)
             {
                 DownArrow(16);
             }
-          
+
 
             //This will select Ranging
             if ((bool)rangingCheck.IsChecked)
@@ -236,10 +239,11 @@ namespace WpfApp1
 
             if (triplexer == true)
             {
-                
+
                 c.leftClick(t);
-                
-            } else
+
+            }
+            else
             {
                 c.leftClick(x);
             }
@@ -254,14 +258,13 @@ namespace WpfApp1
             //the execute button each time.
             MainWindow1.Activate();
             serialNumberTextbox.SelectAll();
-            
-            
+
+
         }
 
-
-       private void verizonButton_Checked(object sender, RoutedEventArgs e)
+        private void verizonButton_Checked(object sender, RoutedEventArgs e)
         {
-            ScrapTimer.customerNum = 59;
+            ScrapTimer.customerNum = 58;
             ScrapTimer.customerStr = "vzt";
         }
 
@@ -280,6 +283,11 @@ namespace WpfApp1
         {
             ScrapTimer.timer.Stop();
         }
+
+        private void scrapButton_Click(object sender, RoutedEventArgs e)
+        {
+            ScrapTimer.ScrapProcess();
+        }
     }
 }
-
+        
