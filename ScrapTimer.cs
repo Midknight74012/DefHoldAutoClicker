@@ -16,11 +16,10 @@ namespace WpfApp1
         public static int customerNum;
         public static string customerStr;
         private static string today = DateTime.Today.ToString("MM/dd/yy").Replace("/", "");
-
         
         
 
-        private static void ScrapProcess()
+        public static void ScrapProcess()
         {
             Click c = new Click();
             InputSimulator isim = new InputSimulator();
@@ -89,6 +88,7 @@ namespace WpfApp1
             ///that has the process of OOW-DH-TP
             t.X = 642;
             t.Y = 26;
+            c.leftClick(t);
             Thread.Sleep(300);
             isim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.F3);
             Thread.Sleep(50);
