@@ -15,12 +15,13 @@ namespace WpfApp1
     {
         public static int customerNum;
         public static string customerStr;
-        private static string today = DateTime.Today.ToString("MM/dd/yy").Replace("/", "");
+        //private static string today = DateTime.Today.ToString("MM/dd/yy").Replace("/", "");
         
         
 
         public static void ScrapProcess()
         {
+            string today = DateTime.Now.ToString("MM/dd/yy").Replace("/", ""); //<------ Added as of 11/29/2022 @ 9:45 PM Central US Time
             Click c = new Click();
             InputSimulator isim = new InputSimulator();
             System.Drawing.Point p = new System.Drawing.Point();
